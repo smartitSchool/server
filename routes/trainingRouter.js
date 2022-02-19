@@ -3,7 +3,7 @@ const router=require('express').Router();
 
 
 
-router.post('/addTraining', trainingController.addTraining)
+router.post('/addTraining', trainingController.trainingImageUpload ,trainingController.addTraining)
 router.get('/allTrainings', trainingController.allTrainings)
 router.get('/:id', trainingController.singleTraining)
 router.put('/:id', trainingController.updateTraining)

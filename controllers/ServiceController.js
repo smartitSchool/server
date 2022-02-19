@@ -1,12 +1,47 @@
 const db = require('../models');
-
+const multer = require('multer');
+const path = require('path');
 
 // create main model
 const Services = db.services
 
+
+
+// image upload
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images')
+    },
+    filename: (req, file, cb) => {
+
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const serviceImageUpload = multer({
+    storage: storage,
+    limits: { fileSize: '1000000' },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|gif/;
+        const mimeType = fileTypes.test(file.mimetype);
+        const extname = fileTypes.test(path.extname(file.originalname));
+
+        if (mimeType && extname) {
+            return cb(null, true);
+        } else{
+            cb('Give proper file format to upload')
+        }
+    }
+}).single('image');
+
+
+
+
 // add a service
 const addService = async (req, res) => {
     let info = {
+        image: req.file.path,
         title: req.body.title,
         price: req.body.price,
         description: req.body.description,
@@ -52,5 +87,6 @@ module.exports = {
     allServices,
     singleService,
     updateService,
-    deleteService
+    deleteService,
+    serviceImageUpload
 }

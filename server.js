@@ -31,6 +31,9 @@ app.use('/api/order', orderRouter);
 
 
 
+// static foleder
+app.use('/images', express.static('./images'))
+
 
 app.get('/', (req, res) => {
     res.send('Hello from server')

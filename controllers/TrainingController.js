@@ -1,12 +1,44 @@
 const db = require('../models');
-
+const multer = require('multer');
+const path = require('path');
 
 // create main model
 const Trainings = db.trainings
 
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images')
+    },
+    filename: (req, file, cb) => {
+
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const trainingImageUpload = multer({
+    storage: storage,
+    limits: { fileSize: '1000000' },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|gif/;
+        const mimeType = fileTypes.test(file.mimetype);
+        const extname = fileTypes.test(path.extname(file.originalname));
+
+        if (mimeType && extname) {
+            return cb(null, true);
+        } else{
+            cb('Give proper file format to upload')
+        }
+    }
+}).single('image');
+
+
+
+
 // add a training
 const addTraining = async (req, res) => {
     let info = {
+        image: req.file.path,
         course_name: req.body.course_name,
         fee: req.body.fee,
         description: req.body.description,
@@ -28,7 +60,7 @@ const allTrainings = async (req, res) => {
 // get one training
 const singleTraining = async (req, res) => {
     const id = req.params.id;
-    let training = await Trainings.finOne({ where: { id: id } })
+    let training = await Trainings.findOne({ where: { id: id } })
     res.status(200).send(training);
 }
 
@@ -53,5 +85,6 @@ module.exports = {
     allTrainings,
     singleTraining,
     updateTraining,
-    deleteTraining
+    deleteTraining,
+    trainingImageUpload
 }

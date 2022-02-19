@@ -3,6 +3,9 @@ module.exports = (sequelize, DataTypes) => {
 
 
     const Trainings = sequelize.define('training', {
+        image:{
+            type:DataTypes.STRING
+        },
         course_name: {
             type: DataTypes.STRING,
             allowNull: false,

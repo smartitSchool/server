@@ -11,7 +11,8 @@ const addOrder = async (req, res) => {
         service_name: req.body.service_name,
         customer_email: req.body.customer_email,
         order_message: req.body.order_message,
-        customer_contact: req.body.customer_contact
+        customer_contact: req.body.customer_contact,
+        order_status: req.body.order_status
     }
     const order = await Orders.create(info)
     res.status(200).send(order);

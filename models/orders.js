@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         customer_contact: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        order_status: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     });
 
