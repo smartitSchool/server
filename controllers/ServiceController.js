@@ -29,7 +29,7 @@ const serviceImageUpload = multer({
 
         if (mimeType && extname) {
             return cb(null, true);
-        } else{
+        } else {
             cb('Give proper file format to upload')
         }
     }

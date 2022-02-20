@@ -16,7 +16,6 @@ const sequelize = new Sequelize(
 
 sequelize.authenticate()
     .then(() => {
-        console.log('connected')
     })
     .catch((err) => {
         console.log(err)
@@ -31,6 +30,7 @@ db.sequelize = sequelize
 db.services = require('./services.js')(sequelize, DataTypes);
 db.trainings = require('./trainings.js')(sequelize, DataTypes);
 db.orders = require('./orders.js')(sequelize, DataTypes);
+db.admission = require('./admission.js')(sequelize, DataTypes);
 
 db.sequelize.sync({ force: false })
     .then(() => {

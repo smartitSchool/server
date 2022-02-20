@@ -30,6 +30,11 @@ const orderRouter = require('./routes/orderRouter.js')
 app.use('/api/order', orderRouter);
 
 
+// routes for admissions
+const admissionRouter = require('./routes/admissionRouter.js')
+app.use('/api/admission', admissionRouter);
+
+
 
 // static foleder
 app.use('/images', express.static('./images'))
