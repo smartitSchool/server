@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
+        selectedCourse: {
+            type: DataTypes.STRING
+        },
         DOB: {
             type: DataTypes.TEXT,
             allowNull: false

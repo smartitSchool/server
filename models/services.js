@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
 
 
     const Service = sequelize.define('service', {
-        image:{
-            type:DataTypes.STRING
+        image: {
+            type: DataTypes.STRING
         },
         title: {
             type: DataTypes.STRING,
@@ -18,9 +18,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        technologies:{
-            type: DataTypes.STRING,
-            allowNull: false
+        technologies: {
+            type: DataTypes.STRING
         }
     });
 

@@ -48,6 +48,7 @@ const newStudent = async (req, res) => {
         mothersName: req.body.mothersName,
         presentAddress: req.body.presentAddress,
         permanentAddress: req.body.permanentAddress,
+        selectedCourse: req.body.selectedCourse,
         DOB: req.body.DOB,
         bloodGroup: req.body.bloodGroup,
         gender: req.body.gender,

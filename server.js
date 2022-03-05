@@ -46,8 +46,15 @@ app.get('/', (req, res) => {
 
 
 
+
 // PORT set
 const PORT = process.env.PORT || 8081;
+
+
+
+app.use((err, req, res, next) => {
+    console.log(err.message)
+})
 
 
 // listening port
